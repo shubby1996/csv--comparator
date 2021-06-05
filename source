@@ -1,0 +1,79 @@
+package exComparator;
+
+import java.io.*;
+import java.lang.reflect.Array;
+import java.util.Scanner;
+
+import java.util.ArrayList;
+
+
+
+public class mainClass {
+	
+	public static void main(String[] args) throws Exception  
+	{  
+	
+	ArrayList<String> aa = new ArrayList<String>();	
+	ArrayList<String> ncd = new ArrayList<String>();
+	
+	
+	//parsing a CSV file into Scanner class constructor  
+	Scanner sc1 = new Scanner(new File("H:\\test1.csv"));
+	//sc1.useDelimiter(",");   //sets the delimiter pattern
+	sc1.next();
+	while (sc1.hasNext() )//|| sc2.hasNext()  )  //returns a boolean value  
+	{  
+	//System.out.println(sc1.next());  //find and returns the next complete token from this scanner  
+	String s = sc1.next(); 
+	String a[] = s.split(",");
+	aa.add(a[0]+" "+a[2]);
+	//System.out.print(a[0]+" "+a[2]);
+	//System.out.print("\n");
+	}   
+	sc1.close();  //closes the scanner  
+	
+	Scanner sc2 = new Scanner(new File("H:\\test2.csv"));
+	//sc2.useDelimiter("\n");   //sets the delimiter pattern
+	sc2.next();
+	while (sc2.hasNext() )//|| sc2.hasNext()  )  //returns a boolean value  
+	{ 
+		String s = sc2.next(); 
+		String a[] = s.split(",");
+		ncd.add(a[0]+" "+a[2]);
+		//System.out.print(a[0]+" "+a[2]);
+		//System.out.print("\n");
+	}
+	sc2.close();
+	for(int i = 0; i< aa.size(); i++)
+	{
+		System.out.println(aa.get(i));
+	}
+	System.out.println("\n");
+	
+	
+	for(int j = 0; j< ncd.size(); j++)
+	{
+		System.out.println(ncd.get(j));
+	}
+	
+	System.out.println("\n");
+	
+	
+	for (int i = 0; i < aa.size(); i++) 
+	{
+		for(int j = 0; j<ncd.size();)
+		{
+			if(aa.get(i) == ncd.get(j))
+			{
+				aa.remove(i);
+				j=i;
+			}
+			j++;
+		}
+	}
+
+	System.out.println(aa.size());
+}
+	
+	
+}
